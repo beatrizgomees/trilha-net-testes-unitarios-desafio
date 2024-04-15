@@ -1,95 +1,55 @@
+using Xunit;
 using TestesUnitarios.Desafio.Console.Services;
 
-namespace TestesUnitarios.Desafio.Tests;
-
-public class ValidacoesListaTests
+namespace TestesUnitarios.Desafio.Tests
 {
-    private ValidacoesLista _validacoes = new ValidacoesLista();
-
-    [Fact]
-    public void DeveRemoverNumerosNegativosDeUmaLista()
+    public class ValidacoesStringTests
     {
-        // Arrange
-        var lista = new List<int> { 5, -1, -8, 9 };
-        var resultadoEsperado = new List<int> { 5, 9 };
+        private ValidacoesString _validacoes = new ValidacoesString();
 
-        // Act
-        var resultado = _validacoes.RemoverNumerosNegativos(lista);
+        [Fact]
+        public void DeveRetornar6QuantidadeCaracteresDaPalavraMatrix()
+        {
+            // Arrange
+            var texto = "Matrix";
+            var resultadoEsperado = 6;
 
-        // Assert
-        Assert.Equal(resultadoEsperado, resultado);
-    }
+            // Act
+            var resultado = _validacoes.RetornarQuantidadeCaracteres(texto);
 
-    [Fact]
-    public void DeveConterONumero9NaLista()
-    {
-        // Arrange
-        var lista = new List<int> { 5, -1, -8, 9 };
-        var numeroParaProcurar = 9;
+            // Assert
+            Assert.Equal(resultadoEsperado, resultado);
+        }
 
-        // Act
-        var resultado = _validacoes.ListaContemDeterminadoNumero(lista, numeroParaProcurar);
+        [Fact]
+        public void DeveContemAPalavraQualquerNoTexto()
+        {
+            // Arrange
+            var texto = "Esse é um texto qualquer";
+            var textoProcurado = "qualquer";
 
-        // Assert
-        Assert.True(resultado);
-    }
+            // Act
+            var resultado = _validacoes.ContemCaractere(texto, textoProcurado);
 
-    [Fact]
-    public void NaoDeveConterONumero10NaLista()
-    {
-        //TODO: Implementar método de teste
+            // Assert
+            Assert.True(resultado);
+        }
 
-        // Arrange
-        var lista = new List<int> { 5, -1, -8, 9 };
-        var numeroParaProcurar = 10;
+        [Fact]
+        public void NaoDeveConterAPalavraTesteNoTexto()
+        {
+            // Arrange
+            var texto = "Esse é um texto qualquer";
+            var textoProcurado = "teste";
 
-        // Act
+            // Act
+            var resultado = _validacoes.ContemCaractere(texto, textoProcurado);
 
-        // Assert
-    }
+            // Assert
+            Assert.False(resultado);
+        }
 
-    //TODO: Corrigir a anotação [Fact]
-    public void DeveMultiplicarOsElementosDaListaPor2()
-    {
-        //TODO: Implementar método de teste
-
-        // Arrange
-        var lista = new List<int> { 5, 7, 8, 9 };
-        var resultadoEsperado = new List<int> { 10, 14, 16, 18 };
-        
-        // Act
-
-        // Assert
-    }
-
-    [Fact]
-    public void DeveRetornar9ComoMaiorNumeroDaLista()
-    {
-        //TODO: Implementar método de teste
-
-        // Arrange
-        var lista = new List<int> { 5, -1, -8, 9 };
-
-        // Act
-
-        // Assert
-        //TODO: Corrigir o Assert.Equal com base no retorno da chamada ao método
-        Assert.Equal(9, 9);
-    }
-
-    [Fact]
-    public void DeveRetornarOitoNegativoComoMenorNumeroDaLista()
-    {
-        //TODO: Implementar método de teste
-
-        // Arrange
-        var lista = new List<int> { 5, -1, -8, 9 };
-
-        // Act
-        var resultado = _validacoes.RetornarMenorNumeroLista(lista);
-
-        // Assert
-        //TODO: Corrigir o Assert.Equal com base no retorno da chamada ao método
-        Assert.Equal(-8, -8);
-    }
-}
+        [Fact]
+        public void TextoDeveTerminarComAPalavraProcurada()
+        {
+           
